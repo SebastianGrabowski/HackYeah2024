@@ -13,5 +13,6 @@ public class FormationData : ScriptableObject
     }
 
     public Grid MyGrid;
+    public string Keyword;
 
 }
