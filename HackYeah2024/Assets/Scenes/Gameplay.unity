@@ -500,6 +500,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 168277563}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &168730377 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2258839259093430730, guid: 538711cdd23af9448bb0cf1858da45ea,
+    type: 3}
+  m_PrefabInstance: {fileID: 1566533919}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c658b08ac0e7f7448ab2dd4029716145, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &205682300
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2004,16 +2016,6 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1509214141954728351, guid: a7dad3e4964d5e2449ed7109c7ce6119,
         type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1509214141954728351, guid: a7dad3e4964d5e2449ed7109c7ce6119,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1509214141954728351, guid: a7dad3e4964d5e2449ed7109c7ce6119,
-        type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
@@ -2325,6 +2327,7 @@ MonoBehaviour:
   - Keyword: right
     MoveOffset: {x: 3, y: 0, z: 0}
   _target: {fileID: 1437456780}
+  _panelsController: {fileID: 168730377}
   _formationData:
   - {fileID: 11400000, guid: abdd63ab4fad900459f1a57b4094fd82, type: 2}
   - {fileID: 11400000, guid: 0e1dbdea5ffb3244eb63960d0c52b54b, type: 2}
