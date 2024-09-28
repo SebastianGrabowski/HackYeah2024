@@ -5,6 +5,8 @@ using UnityEngine.Windows.Speech;
 
 public class InputMic : MonoBehaviour
 {
+    [SerializeField] private PlayerController _playerController;
+
     protected KeywordRecognizer _Recognizer;
     public string[] keywords = new string[] {"up", "down", "left", "right"};
     public ConfidenceLevel confidence = ConfidenceLevel.Medium;
@@ -18,6 +20,7 @@ public class InputMic : MonoBehaviour
     private void Recognizer_OnPhraseRecognized(PhraseRecognizedEventArgs args)
     {
         Debug.Log(args.text);
+        _playerController.Move(args.text);
     }
 
     private void OnApplicationQuit()
