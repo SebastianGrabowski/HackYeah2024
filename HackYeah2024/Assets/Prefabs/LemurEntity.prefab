@@ -97,6 +97,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ffc1ca588c1e0f4396143b4c44c8539, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Collider: {fileID: 8453557528898096529}
+  PlayerController: {fileID: 0}
+  Target: {x: 0, y: 0, z: 0}
+  IsInTeam: 0
 --- !u!136 &8453557528898096529
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -112,7 +116,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
