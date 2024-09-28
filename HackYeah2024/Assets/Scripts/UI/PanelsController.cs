@@ -13,6 +13,8 @@ namespace Game.UI
         [SerializeField]private CenterBarView _centerBarView;
         [SerializeField]private GameOverView _gameOverView;
 
+        private float _gameOverDelay = 1f;
+
         private IEnumerator Start()
         {
             while(PlayerController.Instance == null)
@@ -22,8 +24,10 @@ namespace Game.UI
             _centerBarView.Show();
         }
 
-        public void SetGameOver()
+        public IEnumerator SetGameOver()
         {
+            yield return new WaitForSeconds(_gameOverDelay);
+
             _gameOverView.Show();
         }
     }

@@ -57,11 +57,14 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         if(_lemurs.Count <= 0 && !_isGameOver) {
-            _panelsController.SetGameOver();
+            StartCoroutine(_panelsController.SetGameOver());
             _isGameOver = true;
             return;
         }
 
+        if(_isGameOver)
+            return;
+            
         _target.Translate(Vector3.forward * _speed * Time.deltaTime);
         _cam.transform.position = new Vector3(_cam.transform.position.x, _cam.transform.position.y, _target.position.z);
 

@@ -1178,7 +1178,7 @@ MonoBehaviour:
   - Keyword: right
     MoveOffset: {x: 3, y: 0, z: 0}
   _target: {fileID: 1437456780}
-  _panelsController: {fileID: 0}
+  _panelsController: {fileID: 1968030922}
   _formationData:
   - {fileID: 11400000, guid: abdd63ab4fad900459f1a57b4094fd82, type: 2}
   - {fileID: 11400000, guid: 0e1dbdea5ffb3244eb63960d0c52b54b, type: 2}
@@ -2511,6 +2511,18 @@ Transform:
   - {fileID: 1696874776}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1968030922 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2258839259093430730, guid: 538711cdd23af9448bb0cf1858da45ea,
+    type: 3}
+  m_PrefabInstance: {fileID: 1566533919}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c658b08ac0e7f7448ab2dd4029716145, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2088653457
 PrefabInstance:
   m_ObjectHideFlags: 0
