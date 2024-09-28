@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,6 +20,8 @@ public struct MoveData
 
 public class PlayerController : MonoBehaviour
 {
+    public event Action OnTeamChanged;
+
     [SerializeField] private Transform _cam;
     [SerializeField] private float _removeTime = 0.75f;
     [SerializeField] private float _speed;
@@ -32,6 +35,8 @@ public class PlayerController : MonoBehaviour
 
     private List<LemurEntity> _lemurs = new List<LemurEntity>();
     private int _lastFormation;
+
+    public int TeamCount => _lemurs.Count;
 
     public Vector3 TargetPos => _target.position;
 
@@ -114,6 +119,7 @@ public class PlayerController : MonoBehaviour
         if(!_lemurs.Contains(lemurEntity))
         {
             _lemurs.Add(lemurEntity);
+            OnTeamChanged?.Invoke();
             lemurEntity.transform.SetParent(_lemursParent);
             lemurEntity.SetInTeam();
             RefreshFormation();
@@ -126,6 +132,7 @@ public class PlayerController : MonoBehaviour
         if(_lemurs.Contains(lemurEntity))
         {
             _lemurs.Remove(lemurEntity);
+            OnTeamChanged?.Invoke();
             RefreshFormation();
 
             Destroy(lemurEntity.gameObject, _removeTime);
@@ -164,8 +171,8 @@ public class PlayerController : MonoBehaviour
             var tempPoints = new List<Vector3>();
             for(var i = 0; i < _lemurs.Count; i++)
             {
-                var p = points[Random.Range(0, points.Count)];
-                var offset = Random.insideUnitSphere * 0.3f;
+                var p = points[UnityEngine.Random.Range(0, points.Count)];
+                var offset = UnityEngine.Random.insideUnitSphere * 0.3f;
                 offset = new Vector3(offset.x, 0.0f, offset.z);
                 tempPoints.Add(p + offset);
             }
