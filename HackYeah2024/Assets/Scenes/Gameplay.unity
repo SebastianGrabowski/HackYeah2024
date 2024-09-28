@@ -469,6 +469,8 @@ GameObject:
   - component: {fileID: 326288867}
   - component: {fileID: 326288866}
   - component: {fileID: 326288865}
+  - component: {fileID: 326288869}
+  - component: {fileID: 326288870}
   m_Layer: 0
   m_Name: Obstacle
   m_TagString: Obstacle
@@ -491,7 +493,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -562,6 +564,39 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &326288869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 326288864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e7021592e99607458c6506688f93c68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!135 &326288870
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 326288864}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.55
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &347809698
 GameObject:
   m_ObjectHideFlags: 0
@@ -1029,6 +1064,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LemurEntity (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 9047778382086374683, guid: a7dad3e4964d5e2449ed7109c7ce6119,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8453557528898096529, guid: a7dad3e4964d5e2449ed7109c7ce6119, type: 3}
     m_RemovedGameObjects: []
@@ -1372,6 +1412,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LemurEntity (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 9047778382086374683, guid: a7dad3e4964d5e2449ed7109c7ce6119,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8453557528898096529, guid: a7dad3e4964d5e2449ed7109c7ce6119, type: 3}
     m_RemovedGameObjects: []
@@ -1626,6 +1671,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: LemurEntity (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9047778382086374683, guid: a7dad3e4964d5e2449ed7109c7ce6119,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8453557528898096529, guid: a7dad3e4964d5e2449ed7109c7ce6119, type: 3}

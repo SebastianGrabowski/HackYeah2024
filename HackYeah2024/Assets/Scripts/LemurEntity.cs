@@ -25,23 +25,21 @@ public class LemurEntity : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Obstacle"))
-        {
-            // destroy effect to setup later
-
-            // _rigidbody.isKinematic = false;
-            // _rigidbody.AddForce(transform.forward * _destroyForce, ForceMode.Impulse);
-
-            if(PlayerController == null)
-                PlayerController = FindObjectOfType<PlayerController>();
-            
-            PlayerController.RemoveLemur(this);
-        }
-
         if(IsInTeam && other.TryGetComponent(out LemurEntity lemurEntity))
         {
             PlayerController.AddLemur(lemurEntity);
         }
+    }
+
+    public void OnObstacleCollision()
+    {
+        _rigidbody.constraints = RigidbodyConstraints.None;
+        _rigidbody.AddForce(transform.forward * _destroyForce, ForceMode.Impulse);
+
+        if(PlayerController == null)
+            PlayerController = FindObjectOfType<PlayerController>();
+        
+        PlayerController.RemoveLemur(this);
     }
 
     // Update is called once per frame

@@ -20,6 +20,7 @@ public struct MoveData
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private Transform _cam;
+    [SerializeField] private float _removeTime = 0.75f;
     [SerializeField] private float _speed;
     [SerializeField] private float _minLeftOffset = -5;
     [SerializeField] private float _maxRightOffset = 5;
@@ -116,7 +117,9 @@ public class PlayerController : MonoBehaviour
         if(_lemurs.Contains(lemurEntity))
         {
             _lemurs.Remove(lemurEntity);
-            Destroy(lemurEntity.gameObject, 1.5f);
+            RefreshFormation();
+
+            Destroy(lemurEntity.gameObject, _removeTime);
         }
     }
 
