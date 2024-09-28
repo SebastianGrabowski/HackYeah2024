@@ -16,6 +16,7 @@ namespace Game.UI.Fade
         private void Start()
         {
             _RI.material.SetFloat("_Value", 1.0f);
+            FadeOut(null);
         }
 
         public void FadeIn(UnityEngine.Events.UnityAction onFinish)
@@ -46,6 +47,16 @@ namespace Game.UI.Fade
             }
             _RI.material.SetFloat("_Value", targetValue); 
             onFinish?.Invoke();
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                FadeIn(()=>{ 
+                    UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+                    });
+            }
         }
     }
 }
