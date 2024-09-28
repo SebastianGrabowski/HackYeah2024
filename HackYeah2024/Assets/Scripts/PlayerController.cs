@@ -10,6 +10,7 @@ using UnityEngine;
 //     Down
 // }
 
+[System.Serializable]
 public struct MoveData
 {
     public string Keyword;
@@ -38,7 +39,7 @@ public class PlayerController : MonoBehaviour
     private MoveData GetMoveData(string keyword, out bool notFound)
     {
         notFound = false;
-        
+
         foreach(var moveData in _moveData)
         {
             if(moveData.Keyword == keyword) 

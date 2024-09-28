@@ -692,6 +692,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 3
+  _moveData:
+  - Keyword: left
+    MoveOffset: {x: -3, y: 0, z: 0}
+  - Keyword: right
+    MoveOffset: {x: 3, y: 0, z: 0}
 --- !u!4 &983376567
 Transform:
   m_ObjectHideFlags: 0
