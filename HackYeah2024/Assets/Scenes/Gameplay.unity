@@ -1465,6 +1465,7 @@ MonoBehaviour:
   - sphere
   - wedge
   - vertical
+  - free
   confidence: 2
 --- !u!4 &537212642
 Transform:
@@ -2314,6 +2315,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cam: {fileID: 1924139281}
+  _freeKeyword: free
   _removeTime: 0.75
   _speed: 1.5
   _minLeftOffset: -5

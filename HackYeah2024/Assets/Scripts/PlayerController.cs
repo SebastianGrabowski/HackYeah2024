@@ -73,6 +73,7 @@ public class PlayerController : MonoBehaviour
         //Debug input movement
         if(Input.GetKeyDown(KeyCode.A)) Move(_moveData[0].Keyword);
         if(Input.GetKeyDown(KeyCode.D)) Move(_moveData[1].Keyword);
+        if(Input.GetKeyDown(KeyCode.Space)) FreeLemurs();
 
         if(Input.GetKeyDown(KeyCode.Alpha1))
             SetFormation(0);
