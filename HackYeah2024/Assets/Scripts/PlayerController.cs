@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private Transform _cam;
     [SerializeField] private float _speed;
+    [SerializeField] private float _minLeftOffset = -5;
+    [SerializeField] private float _maxRightOffset = 5;
     [SerializeField] private Transform _lemursParent;
     [SerializeField] private MoveData[] _moveData;
     [SerializeField] private Transform _target;
@@ -34,14 +36,6 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         SetFormation(0);   
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.TryGetComponent(out LemurEntity lemurEntity))
-        {
-            AddLemur(lemurEntity);
-        }
     }
 
     void Update()
@@ -81,6 +75,12 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
+         if(moveData.MoveOffset.x < 0 && transform.position.x < _minLeftOffset)
+          return;
+
+        if(moveData.MoveOffset.x > 0 && transform.position.x > _maxRightOffset)
+            return;
+
         _target.position += moveData.MoveOffset;
     }
 
@@ -107,6 +107,16 @@ public class PlayerController : MonoBehaviour
             lemurEntity.transform.SetParent(_lemursParent);
             lemurEntity.SetInTeam();
             RefreshFormation();
+        }
+    }
+
+    
+    public void RemoveLemur(LemurEntity lemurEntity)
+    {
+        if(_lemurs.Contains(lemurEntity))
+        {
+            _lemurs.Remove(lemurEntity);
+            Destroy(lemurEntity.gameObject, 1.5f);
         }
     }
 
