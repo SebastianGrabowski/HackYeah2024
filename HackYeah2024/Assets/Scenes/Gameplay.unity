@@ -1178,6 +1178,7 @@ MonoBehaviour:
   - Keyword: right
     MoveOffset: {x: 3, y: 0, z: 0}
   _target: {fileID: 1437456780}
+  _panelsController: {fileID: 0}
   _formationData:
   - {fileID: 11400000, guid: abdd63ab4fad900459f1a57b4094fd82, type: 2}
   - {fileID: 11400000, guid: 0e1dbdea5ffb3244eb63960d0c52b54b, type: 2}

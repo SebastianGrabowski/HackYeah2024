@@ -11,6 +11,7 @@ namespace Game.UI
         [SerializeField]private RightBarView _rightBarView;
         [SerializeField]private LeftBarView _leftBarView;
         [SerializeField]private CenterBarView _centerBarView;
+        [SerializeField]private GameOverView _gameOverView;
 
         private IEnumerator Start()
         {
@@ -19,6 +20,11 @@ namespace Game.UI
             _rightBarView.Show();
             _leftBarView.Show();
             _centerBarView.Show();
+        }
+
+        public void SetGameOver()
+        {
+            _gameOverView.Show();
         }
     }
 }

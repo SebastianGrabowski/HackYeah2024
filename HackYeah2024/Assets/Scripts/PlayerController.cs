@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Game.UI;
 using UnityEngine;
 
 // public enum MoveType
@@ -31,13 +32,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform _lemursParent;
     [SerializeField] private MoveData[] _moveData;
     [SerializeField] private Transform _target;
-    [SerializeField]private FormationData[] _formationData;
+    [SerializeField] private PanelsController _panelsController;
+    [SerializeField] private FormationData[] _formationData;
 
     private List<LemurEntity> _lemurs = new List<LemurEntity>();
     private int _lastFormation;
+    private bool _isGameOver;
 
     public int TeamCount => _lemurs.Count;
-
     public Vector3 TargetPos => _target.position;
 
     public static PlayerController Instance { get; private set; }
@@ -46,6 +48,7 @@ public class PlayerController : MonoBehaviour
     {
         Instance = this;
         var initialLemur = Instantiate(_lemurPrefab, _lemursParent);
+        initialLemur.transform.localPosition = Vector3.zero;
         initialLemur.PlayerController = this;
         AddLemur(initialLemur);
         SetFormation(0);
@@ -53,8 +56,11 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if(_lemurs.Count <= 0)
+        if(_lemurs.Count <= 0 && !_isGameOver) {
+            _panelsController.SetGameOver();
+            _isGameOver = true;
             return;
+        }
 
         _target.Translate(Vector3.forward * _speed * Time.deltaTime);
         _cam.transform.position = new Vector3(_cam.transform.position.x, _cam.transform.position.y, _target.position.z);
@@ -62,7 +68,6 @@ public class PlayerController : MonoBehaviour
         //Debug input movement
         if(Input.GetKeyDown(KeyCode.A)) Move(_moveData[0].Keyword);
         if(Input.GetKeyDown(KeyCode.D)) Move(_moveData[1].Keyword);
-        
 
         if(Input.GetKeyDown(KeyCode.Alpha1))
             SetFormation(0);
@@ -89,6 +94,7 @@ public class PlayerController : MonoBehaviour
                     SetFormation(i);
                     return;
                 }
+                
             return;
         }
 
@@ -128,7 +134,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    
     public void RemoveLemur(LemurEntity lemurEntity)
     {
         if(_lemurs.Contains(lemurEntity))
