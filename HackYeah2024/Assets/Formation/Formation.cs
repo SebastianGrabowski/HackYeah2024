@@ -22,7 +22,7 @@ public class Formation : MonoBehaviour
             foreach(var unit in _SpawnedUnits)
                 Destroy(unit.gameObject);
             _SpawnedUnits.Clear();
-            var r = Random.Range(1, 20);
+            var r = Random.Range(1, 40);
             for(var i = 0; i < r; i++)
             {
                 var newUnit = Instantiate(_Unit);
@@ -40,6 +40,10 @@ public class Formation : MonoBehaviour
             RunFormation(_Data[2]);
         if(Input.GetKeyDown(KeyCode.Alpha4))
             RunFormation(_Data[3]);
+        if(Input.GetKeyDown(KeyCode.Alpha5))
+            RunFormation(_Data[4]);
+        if(Input.GetKeyDown(KeyCode.Alpha6))
+            RunFormation(_Data[5]);
     }
 
     private void RunFormation(FormationData data)
@@ -61,28 +65,29 @@ public class Formation : MonoBehaviour
         var bestPoints = new List<Vector3>();
         var maxMinDistance = float.MinValue;
 
-        for(var j = 0; j < 1000; j++)
+        for(var j = 0; j < 10000; j++)
         {
             var tempPoints = new List<Vector3>();
-            for(var i = 0; i < points.Count; i++)
+            for(var i = 0; i < _SpawnedUnits.Count; i++)
             {
+                var p = points[Random.Range(0, points.Count)];
                 var offset = Random.insideUnitSphere * 0.3f;
                 offset = new Vector3(offset.x, 0.0f, offset.z);
-                tempPoints.Add(points[i] + offset);
+                tempPoints.Add(p + offset);
             }
             var minMax = GetMinMaxDistance(tempPoints);
             if(minMax > maxMinDistance)
             {
                 maxMinDistance = minMax;
                 bestPoints.Clear();
-                bestPoints.AddRange(tempPoints);
+                bestPoints.AddRange(tempPoints.ToArray());
             }
         }
 
 
         for(var i = 0; i < _SpawnedUnits.Count; i++)
         {
-            var pp = bestPoints[Random.Range(0, bestPoints.Count)];
+            var pp = bestPoints[i];
             _SpawnedUnits[i].Target = pp;
         }
     }
