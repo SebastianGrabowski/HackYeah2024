@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 4527863745881563530}
   - component: {fileID: 5083209967017040738}
   - component: {fileID: 2975488572130368727}
-  - component: {fileID: 8453557528898096529}
   - component: {fileID: 6260652986815027849}
+  - component: {fileID: 2353947488531409978}
   m_Layer: 0
   m_Name: LemurEntity
   m_TagString: Lemur
@@ -99,33 +99,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _destroyForce: 2
-  Collider: {fileID: 8453557528898096529}
+  Collider: {fileID: 2353947488531409978}
   PlayerController: {fileID: 0}
   Target: {x: 0, y: 0, z: 0}
   IsInTeam: 0
---- !u!136 &8453557528898096529
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9047778382086374683}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 1.0000002
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &6260652986815027849
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -135,8 +112,8 @@ Rigidbody:
   m_GameObject: {fileID: 9047778382086374683}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Drag: 1
+  m_AngularDrag: 1
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -153,3 +130,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!135 &2353947488531409978
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9047778382086374683}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.3
+  m_Center: {x: 0, y: 0, z: 0}

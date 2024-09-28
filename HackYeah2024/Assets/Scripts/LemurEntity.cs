@@ -38,9 +38,9 @@ public class LemurEntity : MonoBehaviour
             PlayerController.RemoveLemur(this);
         }
 
-        if(!IsInTeam && other.TryGetComponent(out PlayerController playerController))
+        if(IsInTeam && other.TryGetComponent(out LemurEntity lemurEntity))
         {
-            playerController.AddLemur(this);
+            PlayerController.AddLemur(lemurEntity);
         }
     }
 
@@ -51,6 +51,6 @@ public class LemurEntity : MonoBehaviour
             return;
 
         var dir = (PlayerController.TargetPos + Target) - transform.position;
-        _rigidbody.velocity += dir.normalized * Time.deltaTime * 4.0f * Mathf.Min(1, dir.magnitude);
+        _rigidbody.velocity = dir.normalized  * 10.0f * Mathf.Min(1, dir.magnitude);
     }
 }
