@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,13 +19,12 @@ public struct MoveData
 
 public class PlayerController : MonoBehaviour
 {
-    public event Action OnTeamChanged;
-
     [SerializeField] private Transform _cam;
     [SerializeField] private float _removeTime = 0.75f;
     [SerializeField] private float _speed;
     [SerializeField] private float _minLeftOffset = -5;
     [SerializeField] private float _maxRightOffset = 5;
+    [SerializeField] private LemurEntity _initialLemur;
     [SerializeField] private Transform _lemursParent;
     [SerializeField] private MoveData[] _moveData;
     [SerializeField] private Transform _target;
@@ -35,24 +33,23 @@ public class PlayerController : MonoBehaviour
     private List<LemurEntity> _lemurs = new List<LemurEntity>();
     private int _lastFormation;
 
-    public int TeamCount => _lemurs.Count;
-
     public Vector3 TargetPos => _target.position;
-
-    public static PlayerController Instance { get; private set; }
 
     private void Start()
     {
-        SetFormation(0);  
-        Instance = this;
-        OnTeamChanged?.Invoke();
+        AddLemur(_initialLemur);
+        SetFormation(0);
     }
 
     void Update()
     {
+        if(_lemurs.Count <= 0)
+            return;
+
         _target.Translate(Vector3.forward * _speed * Time.deltaTime);
         _cam.transform.position = new Vector3(_cam.transform.position.x, _cam.transform.position.y, _target.position.z);
-        //Debug Movement
+
+        //Debug input movement
         if(Input.GetKeyDown(KeyCode.A)) Move(_moveData[0].Keyword);
         if(Input.GetKeyDown(KeyCode.D)) Move(_moveData[1].Keyword);
         
@@ -117,7 +114,6 @@ public class PlayerController : MonoBehaviour
             lemurEntity.transform.SetParent(_lemursParent);
             lemurEntity.SetInTeam();
             RefreshFormation();
-            OnTeamChanged?.Invoke();
         }
     }
 
@@ -127,7 +123,6 @@ public class PlayerController : MonoBehaviour
         if(_lemurs.Contains(lemurEntity))
         {
             _lemurs.Remove(lemurEntity);
-            OnTeamChanged?.Invoke();
             RefreshFormation();
 
             Destroy(lemurEntity.gameObject, _removeTime);
@@ -166,8 +161,8 @@ public class PlayerController : MonoBehaviour
             var tempPoints = new List<Vector3>();
             for(var i = 0; i < _lemurs.Count; i++)
             {
-                var p = points[UnityEngine.Random.Range(0, points.Count)];
-                var offset = UnityEngine.Random.insideUnitSphere * 0.3f;
+                var p = points[Random.Range(0, points.Count)];
+                var offset = Random.insideUnitSphere * 0.3f;
                 offset = new Vector3(offset.x, 0.0f, offset.z);
                 tempPoints.Add(p + offset);
             }

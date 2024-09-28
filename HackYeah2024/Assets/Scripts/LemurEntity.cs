@@ -11,6 +11,7 @@ public class LemurEntity : MonoBehaviour
     public bool IsInTeam;
 
     private Rigidbody _rigidbody;
+    private bool _collided;
 
     private void Awake()
     {
@@ -33,13 +34,18 @@ public class LemurEntity : MonoBehaviour
 
     public void OnObstacleCollision()
     {
-        _rigidbody.constraints = RigidbodyConstraints.None;
-        _rigidbody.AddForce(transform.forward * _destroyForce, ForceMode.Impulse);
+        if(_collided)
+            return;
 
         if(PlayerController == null)
             PlayerController = FindObjectOfType<PlayerController>();
-        
+            
         PlayerController.RemoveLemur(this);
+
+        _rigidbody.constraints = RigidbodyConstraints.None;
+        _rigidbody.AddForce(Vector3.up * _destroyForce);
+        _collided = true;
+        
     }
 
     // Update is called once per frame
