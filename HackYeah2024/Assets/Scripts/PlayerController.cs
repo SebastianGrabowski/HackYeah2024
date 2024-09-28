@@ -35,8 +35,11 @@ public class PlayerController : MonoBehaviour
 
     public Vector3 TargetPos => _target.position;
 
+    public static PlayerController Instance { get; private set; }
+
     private void Start()
     {
+        Instance = this;
         AddLemur(_initialLemur);
         SetFormation(0);
     }
