@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class LemurEntity : MonoBehaviour
 {
+    [SerializeField] private GameObject _teamView;
+    [SerializeField] private GameObject _notTeamView;
     [SerializeField] private float _destroyForce;
     public Collider Collider;
     public PlayerController PlayerController;
@@ -16,12 +18,20 @@ public class LemurEntity : MonoBehaviour
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        RefreshView();
+    }
+
+    public void RefreshView()
+    {
+        _teamView.SetActive(IsInTeam);
+        _notTeamView.SetActive(!IsInTeam);
     }
 
     public void SetInTeam()
     {
         IsInTeam = true;
         Collider.isTrigger = false;
+        RefreshView();
     }
 
     private void OnTriggerEnter(Collider other)

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,7 @@ using UnityEngine.Windows.Speech;
 
 public class InputMic : MonoBehaviour
 {
+    public static Action<string> OnRecognize;
     [SerializeField] private PlayerController _playerController;
 
     protected KeywordRecognizer _Recognizer;
@@ -21,6 +23,7 @@ public class InputMic : MonoBehaviour
     {
         Debug.Log(args.text);
         _playerController.Move(args.text);
+        OnRecognize?.Invoke(args.text);
     }
 
     private void OnApplicationQuit()
