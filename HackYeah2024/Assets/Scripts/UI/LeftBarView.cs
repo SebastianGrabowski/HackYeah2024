@@ -9,11 +9,6 @@ namespace Game.UI
     {
         [SerializeField]private GameObject _view;
 
-        private void Start()
-        {
-            Show();
-        }
-
         public void Show()
         {
             _view.SetActive(true);
