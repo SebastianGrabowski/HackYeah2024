@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _speed;
     [SerializeField] private float _minLeftOffset = -5;
     [SerializeField] private float _maxRightOffset = 5;
+    [SerializeField] private LemurEntity _initialLemur;
     [SerializeField] private Transform _lemursParent;
     [SerializeField] private MoveData[] _moveData;
     [SerializeField] private Transform _target;
@@ -36,14 +37,19 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        SetFormation(0);   
+        AddLemur(_initialLemur);
+        SetFormation(0);
     }
 
     void Update()
     {
+        if(_lemurs.Count <= 0)
+            return;
+
         _target.Translate(Vector3.forward * _speed * Time.deltaTime);
         _cam.transform.position = new Vector3(_cam.transform.position.x, _cam.transform.position.y, _target.position.z);
-        //Debug Movement
+
+        //Debug input movement
         if(Input.GetKeyDown(KeyCode.A)) Move(_moveData[0].Keyword);
         if(Input.GetKeyDown(KeyCode.D)) Move(_moveData[1].Keyword);
         
