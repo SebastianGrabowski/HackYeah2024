@@ -90,10 +90,10 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-         if(moveData.MoveOffset.x < 0 && transform.position.x < _minLeftOffset)
-          return;
+        if(moveData.MoveOffset.x < 0 && _target.position.x < _minLeftOffset)
+            return;
 
-        if(moveData.MoveOffset.x > 0 && transform.position.x > _maxRightOffset)
+        if(moveData.MoveOffset.x > 0 && _target.position.x > _maxRightOffset)
             return;
 
         _target.position += moveData.MoveOffset;
