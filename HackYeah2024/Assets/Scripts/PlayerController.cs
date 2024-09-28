@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     public event Action OnTeamChanged;
 
     [SerializeField] private Transform _cam;
+    [SerializeField] private string _freeKeyword;
     [SerializeField] private float _removeTime = 0.75f;
     [SerializeField] private float _speed;
     [SerializeField] private float _minLeftOffset = -5;
@@ -36,6 +37,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private FormationData[] _formationData;
 
     private List<LemurEntity> _lemurs = new List<LemurEntity>();
+    private List<LemurEntity> _lemursToFree = new List<LemurEntity>();
     private int _lastFormation;
     private bool _isGameOver;
 
@@ -88,6 +90,7 @@ public class PlayerController : MonoBehaviour
 
     public void Move(string keyword)
     {
+
         var moveData = GetMoveData(keyword, out bool notFound);
         if (notFound)
         {
@@ -98,6 +101,12 @@ public class PlayerController : MonoBehaviour
                     return;
                 }
                 
+            return;
+        }
+
+        if(keyword == _freeKeyword)
+        {
+            FreeLemurs();
             return;
         }
 
@@ -123,6 +132,28 @@ public class PlayerController : MonoBehaviour
         notFound = true;
 
         return default;
+    }
+
+    public void SetLemursToFree(bool canBeUnlocked, LemurEntity lemurEntity)
+    {
+        if(canBeUnlocked && !_lemursToFree.Contains(lemurEntity))
+        {
+            _lemursToFree.Add(lemurEntity);
+        }
+        else if(!canBeUnlocked && _lemursToFree.Contains(lemurEntity))
+        {
+            _lemursToFree.Remove(lemurEntity);
+        }
+
+        _panelsController.SetFreeView(_lemursToFree.Count > 0);
+    }
+
+    private void FreeLemurs()
+    {
+        foreach(var lemur in _lemursToFree)
+        {
+            AddLemur(lemur);
+        }
     }
 
     public void AddLemur(LemurEntity lemurEntity)

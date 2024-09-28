@@ -28,7 +28,15 @@ public class LemurEntity : MonoBehaviour
     {
         if(IsInTeam && other.TryGetComponent(out LemurEntity lemurEntity))
         {
-            PlayerController.AddLemur(lemurEntity);
+            PlayerController.SetLemursToFree(true, lemurEntity);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if(IsInTeam && other.TryGetComponent(out LemurEntity lemurEntity))
+        {
+            PlayerController.SetLemursToFree(false, lemurEntity);
         }
     }
 

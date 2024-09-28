@@ -12,6 +12,7 @@ namespace Game.UI
         [SerializeField]private LeftBarView _leftBarView;
         [SerializeField]private CenterBarView _centerBarView;
         [SerializeField]private GameOverView _gameOverView;
+        [SerializeField]private LemursFreeView _lemursFreeView;
 
         private float _gameOverDelay = 1f;
 
@@ -29,6 +30,12 @@ namespace Game.UI
             yield return new WaitForSeconds(_gameOverDelay);
 
             _gameOverView.Show();
+        }
+
+        public void SetFreeView(bool active)
+        {
+            if(active) _lemursFreeView.Show();
+            else _lemursFreeView.Hide();
         }
     }
 }
