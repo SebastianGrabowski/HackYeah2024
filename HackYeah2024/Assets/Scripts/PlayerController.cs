@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _speed;
     [SerializeField] private float _minLeftOffset = -5;
     [SerializeField] private float _maxRightOffset = 5;
-    [SerializeField] private LemurEntity _initialLemur;
+    [SerializeField] private LemurEntity _lemurPrefab;
     [SerializeField] private Transform _lemursParent;
     [SerializeField] private MoveData[] _moveData;
     [SerializeField] private Transform _target;
@@ -45,7 +45,9 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         Instance = this;
-        AddLemur(_initialLemur);
+        var initialLemur = Instantiate(_lemurPrefab, _lemursParent);
+        initialLemur.PlayerController = this;
+        AddLemur(initialLemur);
         SetFormation(0);
     }
 
