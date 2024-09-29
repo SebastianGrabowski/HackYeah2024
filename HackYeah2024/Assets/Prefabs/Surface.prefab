@@ -333,9 +333,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcf5cf37cf3925344b2ef26248a86fdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxDistance: 18.9
-  _minDistance: 18.3
-  _offsetY: 87.75
+  _maxDistance: 42
+  _minDistance: 38
+  _offsetY: 102.9
   _player: {fileID: 0}
   _platforms:
   - {fileID: 4768317867552210030}
