@@ -16,6 +16,7 @@ namespace Game.UI
         public bool stop;
 
         string format = "Distance {0}m.";
+        float _distance;
         float _timeToElapse;
         
 
@@ -32,11 +33,16 @@ namespace Game.UI
         private void Update()
         {
             if(stop)
+            {
+                _distance = 0f;
                 return;
+            }
                 
+            _distance += Time.deltaTime;
             if(Time.time > _timeToElapse)
             {
-                _textMeshProUGUI.text = string.Format(format, Time.time.ToString("F2"));
+                
+                _textMeshProUGUI.text = string.Format(format, _distance.ToString("F2"));
                 _textMeshProUGUIBg.text = _textMeshProUGUI.text;
                 _timeToElapse = Time.time + _delay;
             }
