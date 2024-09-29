@@ -170,9 +170,9 @@ public class PlayerController : MonoBehaviour
 
     private void FreeLemurs()
     {
-        foreach(var lemur in _lemursToFree)
+        for (int i = 0; i < _lemursToFree.Count; i++)
         {
-            AddLemur(lemur);
+            AddLemur(_lemursToFree[i]);
         }
     }
 
