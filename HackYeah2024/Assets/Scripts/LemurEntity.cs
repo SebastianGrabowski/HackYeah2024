@@ -47,8 +47,14 @@ public class LemurEntity : MonoBehaviour
     {
         if(IsInTeam && other.TryGetComponent(out LemurEntity lemurEntity))
         {
-            PlayerController.SetLemursToFree(false, lemurEntity);
+            StartCoroutine(SetLemursToFreeNull(lemurEntity));
         }
+    }
+
+    private IEnumerator SetLemursToFreeNull(LemurEntity lemurEntity)
+    {
+        yield return new WaitForSeconds(0.5f);
+            PlayerController.SetLemursToFree(false, lemurEntity);
     }
 
     public void OnObstacleCollision()
@@ -73,10 +79,14 @@ public class LemurEntity : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!IsInTeam)
-            return;
-
         var dir = (PlayerController.TargetPos + Target) - transform.position;
+
+        if (!IsInTeam)
+        {
+            _rigidbody.velocity = dir.normalized  * 0.1f * Mathf.Min(1, dir.magnitude);
+            return;
+        }
+
         _rigidbody.velocity = dir.normalized  * 10.0f * Mathf.Min(1, dir.magnitude);
     }
 }
