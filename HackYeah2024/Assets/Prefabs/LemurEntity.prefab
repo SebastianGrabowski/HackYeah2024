@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1509214141954728351}
   - component: {fileID: 5397219148982356406}
   - component: {fileID: 8979870741836793609}
+  - component: {fileID: 6416213796565499728}
   m_Layer: 0
   m_Name: Team
   m_TagString: Untagged
@@ -83,6 +84,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4774846844760183753}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!95 &6416213796565499728
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4774846844760183753}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b1d0a84532148c045ac48e6e3a1b984e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5102943013589908617
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,6 +116,7 @@ GameObject:
   - component: {fileID: 2986981886813570430}
   - component: {fileID: 453838569886158258}
   - component: {fileID: 6992868733932992314}
+  - component: {fileID: 6772857485644072929}
   m_Layer: 0
   m_Name: NotTeam
   m_TagString: Untagged
@@ -166,6 +189,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5102943013589908617}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!95 &6772857485644072929
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5102943013589908617}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f9e5f6c08a0e3f742a28c2cbbdc61ce8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &9047778382086374683
 GameObject:
   m_ObjectHideFlags: 0
@@ -214,6 +258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ffc1ca588c1e0f4396143b4c44c8539, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animator: {fileID: 6416213796565499728}
   _teamView: {fileID: 4774846844760183753}
   _notTeamView: {fileID: 5102943013589908617}
   _destroyForce: 75

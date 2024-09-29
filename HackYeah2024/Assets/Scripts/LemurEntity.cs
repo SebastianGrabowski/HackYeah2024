@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class LemurEntity : MonoBehaviour
 {
+    [SerializeField] private Animator _animator;
     [SerializeField] private GameObject _teamView;
     [SerializeField] private GameObject _notTeamView;
     [SerializeField] private float _destroyForce;
@@ -57,8 +58,11 @@ public class LemurEntity : MonoBehaviour
 
         if(PlayerController == null)
             PlayerController = FindObjectOfType<PlayerController>();
-            
+
         PlayerController.RemoveLemur(this);
+
+        _animator.enabled = true;
+        _animator.SetTrigger("Caught");
 
         _rigidbody.constraints = RigidbodyConstraints.None;
         _rigidbody.AddForce(Vector3.up * _destroyForce);

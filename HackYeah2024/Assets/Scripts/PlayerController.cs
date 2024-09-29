@@ -95,6 +95,13 @@ public class PlayerController : MonoBehaviour
         var moveData = GetMoveData(keyword, out bool notFound);
         if (notFound)
         {
+
+                    if(keyword == _freeKeyword)
+        {
+            FreeLemurs();
+            return;
+        }
+        
             for(var i = 0; i < _formationData.Length; i++)
                 if(_formationData[i].Keyword == keyword)
                 {
@@ -105,11 +112,7 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        if(keyword == _freeKeyword)
-        {
-            FreeLemurs();
-            return;
-        }
+
 
         if(moveData.MoveOffset.x < 0 && _target.position.x < _minLeftOffset)
             return;
