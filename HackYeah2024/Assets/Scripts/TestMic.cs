@@ -19,6 +19,12 @@ public class InputMic : MonoBehaviour
         _Recognizer.OnPhraseRecognized += Recognizer_OnPhraseRecognized;
         _Recognizer.Start();
     }
+
+    private void OnDestroy()
+    {
+        _Recognizer.Dispose();
+    }
+
     private void Recognizer_OnPhraseRecognized(PhraseRecognizedEventArgs args)
     {
         Debug.Log(args.text);

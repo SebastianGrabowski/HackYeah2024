@@ -53,6 +53,8 @@ public class PlayerController : MonoBehaviour
 
     public static PlayerController Instance { get; private set; }
 
+    private float _startGameTime;
+
     public void ShakeCam(int c)
     {
         StartCoroutine(ShakeCamUpdate(c));
@@ -84,17 +86,19 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        _startGameTime = Time.unscaledTime;
         Instance = this;
         var initialLemur = Instantiate(_lemurPrefab, _lemursParent);
         initialLemur.transform.localPosition = Vector3.zero;
         AddLemur(initialLemur);
         SetFormation(0);
     }
+    
+    public static float ProgressSpeed;
+
 
     void Update()
     {
-        Debug.Log("FREE " + _lemursToFree.Count);
-
         if(_lemurs.Count <= 0 && !_isGameOver) {
             StartCoroutine(_panelsController.SetGameOver());
             _isGameOver = true;
@@ -104,7 +108,8 @@ public class PlayerController : MonoBehaviour
         if(_isGameOver)
             return;
             
-        _target.Translate(Vector3.forward * _speed * Time.deltaTime);
+        ProgressSpeed = Mathf.Lerp(1.0f, 11.0f, Mathf.Min(120.0f, Time.unscaledTime-_startGameTime)/120.0f);
+        _target.Translate(Vector3.forward * _speed * ProgressSpeed * Time.deltaTime);
         _cam.transform.position = new Vector3(_cam.transform.position.x, _cam.transform.position.y, _target.position.z);
 
         //Debug input movement
@@ -200,8 +205,11 @@ public class PlayerController : MonoBehaviour
 
     private void FreeLemurs()
     {
-        for (int i = 0; i < _lemursToFree.Count; i++)
+        var cpy = new List<LemurEntity>();
+        cpy.AddRange(_lemursToFree);
+        for (int i = 0; i < cpy.Count; i++)
         {
+            Debug.Log("LL "+ _lemursToFree.Count);
             AddLemur(_lemursToFree[i]);
         }
     }

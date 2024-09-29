@@ -23,8 +23,8 @@ public class LemurEntity : MonoBehaviour
 
     private void Awake()
     {
-        _animTime = Random.Range(5.0f, 7.0f);
-        _animMinMax = Random.Range(25.0f, 35.0f);
+        _animTime = Random.Range(75.0f, 110.0f);
+        _animMinMax = Random.Range(15.0f, 20.0f);
         _rigidbody = GetComponent<Rigidbody>();
         RefreshView();
     }
@@ -157,7 +157,7 @@ public class LemurEntity : MonoBehaviour
             return;
         }
 
-        _rigidbody.velocity = dir.normalized  * 10.0f * Mathf.Min(1, dir.magnitude);
+        _rigidbody.velocity = dir.normalized  * (10.0f * PlayerController.ProgressSpeed) * Mathf.Min(1, dir.magnitude);
 
         _teamView.transform.localRotation = Quaternion.Euler(
             _teamView.transform.localRotation.eulerAngles.x, 
