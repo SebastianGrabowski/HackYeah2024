@@ -54,7 +54,7 @@ namespace Game.UI.Fade
             if (Input.GetKeyDown(KeyCode.R))
             {
                 FadeIn(()=>{ 
-                    UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+                    UnityEngine.SceneManagement.SceneManager.LoadScene(1);
                     });
             }
         }

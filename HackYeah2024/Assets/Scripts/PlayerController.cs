@@ -155,7 +155,7 @@ public class PlayerController : MonoBehaviour
             if(keyword == _resetKeyword)
             {
                 _fadeController.FadeIn(()=>{ 
-                    UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+                    UnityEngine.SceneManagement.SceneManager.LoadScene(1);
                 });
                 
                 return;
