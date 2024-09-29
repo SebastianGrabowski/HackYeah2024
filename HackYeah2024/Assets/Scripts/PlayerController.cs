@@ -102,14 +102,15 @@ public class PlayerController : MonoBehaviour
                     return;
                 }
                 
+            if(keyword == _freeKeyword)
+            {
+                FreeLemurs();
+                return;
+            }
+
             return;
         }
 
-        if(keyword == _freeKeyword)
-        {
-            FreeLemurs();
-            return;
-        }
 
         if(moveData.MoveOffset.x < 0 && _target.position.x < _minLeftOffset)
             return;
