@@ -13,6 +13,8 @@ namespace Game.UI
         [SerializeField]private GameObject _view;
         [SerializeField]private TMP_Text _valueLabel;
 
+        private Coroutine coroutine; 
+
         string valueFormat = "x{0}";
         int prevAmount = 0;
 
@@ -35,7 +37,11 @@ namespace Game.UI
                 return;
             
             var teamCount = PlayerController.Instance.TeamCount;
-            if(teamCount > prevAmount) StartCoroutine(OnCollectEffect());
+            if(teamCount > prevAmount)
+            {
+                if(coroutine != null) StopCoroutine(coroutine);
+                coroutine = StartCoroutine(OnCollectEffect());
+            } 
 
             
             _valueLabel.text = string.Format(valueFormat, teamCount);

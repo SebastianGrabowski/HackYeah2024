@@ -53,9 +53,8 @@ MonoBehaviour:
   _delay: 0.5
   _view: {fileID: 7510279577070566658}
   _textMeshProUGUI: {fileID: 4728995844601086938}
-  _textMeshProUGUIBg: {fileID: 0}
+  _textMeshProUGUIBg: {fileID: 4934757368532509966}
   _btextMeshProUGUI: {fileID: 4934757368532509966}
-  _btextMeshProUGUIBg: {fileID: 0}
   stop: 0
 --- !u!1 &5171810730944001992
 GameObject:
@@ -246,8 +245,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 81.7759, y: -50}
-  m_SizeDelta: {x: 88.14, y: 38.9502}
+  m_AnchoredPosition: {x: 79.08591, y: -50}
+  m_SizeDelta: {x: 82.76, y: 38.9502}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6411229195033301484
 CanvasRenderer:
@@ -279,8 +278,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 2.123m
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a79974efb4cfc874c83e099990483474, type: 2}
+  m_sharedMaterial: {fileID: -847781571203264099, guid: a79974efb4cfc874c83e099990483474,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

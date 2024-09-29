@@ -13,7 +13,8 @@ namespace Game.UI
         [SerializeField]private TextMeshProUGUI _textMeshProUGUI;
         [SerializeField]private TextMeshProUGUI _textMeshProUGUIBg;
         [SerializeField]private TextMeshProUGUI _btextMeshProUGUI;
-        [SerializeField]private TextMeshProUGUI _btextMeshProUGUIBg;
+        
+        // [SerializeField]private TextMeshProUGUI _btextMeshProUGUIBg;
 
         public bool stop;
 
@@ -54,8 +55,10 @@ namespace Game.UI
                     bestD = _distance;
                     PlayerPrefs.SetFloat("BestD", _distance);
                 }
+
                 _btextMeshProUGUI.text = string.Format(format2, bestD.ToString("F2"));
-                _btextMeshProUGUIBg.text = _btextMeshProUGUI.text;
+                _btextMeshProUGUI.text = _btextMeshProUGUI.text;
+
                 _btextMeshProUGUI.gameObject.SetActive(bestD > 0.0f);
 
                 _timeToElapse = Time.time + _delay;
