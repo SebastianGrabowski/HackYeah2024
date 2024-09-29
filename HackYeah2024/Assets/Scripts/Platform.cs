@@ -19,6 +19,7 @@ public class Platform : MonoBehaviour
 
     [SerializeField] public Vector3[] _minSpawnOffsets;
     [SerializeField] public Vector3[] _maxSpawnOffsets;
+
     [SerializeField] private Transform[] _entityPoints;
    
     private List<LemurEntity> _lemurEntities = new List<LemurEntity>();
@@ -50,8 +51,8 @@ public class Platform : MonoBehaviour
         _lemurEntities.Clear();
         _obstacles.Clear();
 
-        
-        for (int i = 0; i < _entityPoints.Length; i++)
+        var entityAmount = Random.Range(2, _entityPoints.Length);
+        for (int i = 0; i < entityAmount; i++)
         {
             float randomChance = Random.value;
             if(randomChance <= _lemurChance)
