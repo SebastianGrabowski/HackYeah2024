@@ -55,4 +55,6 @@ MonoBehaviour:
   - column
   - wedge
   - circle
+  - free
+  - reset
   confidence: 2

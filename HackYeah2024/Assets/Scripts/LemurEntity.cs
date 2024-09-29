@@ -8,8 +8,8 @@ public class LemurEntity : MonoBehaviour
     [SerializeField] private GameObject _teamView;
     [SerializeField] private GameObject _notTeamView;
     [SerializeField] private float _destroyForce;
+
     public Collider Collider;
-    public PlayerController PlayerController;
     public Vector3 Target;
     public bool IsInTeam;
 
@@ -39,7 +39,7 @@ public class LemurEntity : MonoBehaviour
     {
         if(IsInTeam && other.TryGetComponent(out LemurEntity lemurEntity))
         {
-            PlayerController.SetLemursToFree(true, lemurEntity);
+            PlayerController.Instance.SetLemursToFree(true, lemurEntity);
         }
     }
 
@@ -47,7 +47,7 @@ public class LemurEntity : MonoBehaviour
     {
         if(IsInTeam && other.TryGetComponent(out LemurEntity lemurEntity))
         {
-            PlayerController.SetLemursToFree(false, lemurEntity);
+            PlayerController.Instance.SetLemursToFree(false, lemurEntity);
         }
     }
 
@@ -56,10 +56,7 @@ public class LemurEntity : MonoBehaviour
         if(_collided)
             return;
 
-        if(PlayerController == null)
-            PlayerController = FindObjectOfType<PlayerController>();
-
-        PlayerController.RemoveLemur(this);
+        PlayerController.Instance.RemoveLemur(this);
 
         _animator.enabled = true;
         _animator.SetTrigger("Caught");
@@ -76,7 +73,7 @@ public class LemurEntity : MonoBehaviour
         if(!IsInTeam)
             return;
 
-        var dir = (PlayerController.TargetPos + Target) - transform.position;
+        var dir = (PlayerController.Instance.TargetPos + Target) - transform.position;
         _rigidbody.velocity = dir.normalized  * 10.0f * Mathf.Min(1, dir.magnitude);
     }
 }

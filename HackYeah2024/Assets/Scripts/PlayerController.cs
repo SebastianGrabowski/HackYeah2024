@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Game.UI;
+using Game.UI.Fade;
 using UnityEngine;
 
 // public enum MoveType
@@ -25,6 +26,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private Transform _cam;
     [SerializeField] private string _freeKeyword;
+    [SerializeField] private string _resetKeyword;
     [SerializeField] private float _removeTime = 0.75f;
     [SerializeField] private float _speed;
     [SerializeField] private float _minLeftOffset = -5;
@@ -34,6 +36,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private MoveData[] _moveData;
     [SerializeField] private Transform _target;
     [SerializeField] private PanelsController _panelsController;
+    [SerializeField] private FadeController _fadeController;
     [SerializeField] private FormationData[] _formationData;
 
     private List<LemurEntity> _lemurs = new List<LemurEntity>();
@@ -51,7 +54,6 @@ public class PlayerController : MonoBehaviour
         Instance = this;
         var initialLemur = Instantiate(_lemurPrefab, _lemursParent);
         initialLemur.transform.localPosition = Vector3.zero;
-        initialLemur.PlayerController = this;
         AddLemur(initialLemur);
         SetFormation(0);
     }
@@ -105,6 +107,15 @@ public class PlayerController : MonoBehaviour
             if(keyword == _freeKeyword)
             {
                 FreeLemurs();
+                return;
+            }
+
+            if(keyword == _resetKeyword)
+            {
+                _fadeController.FadeIn(()=>{ 
+                    UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+                });
+                
                 return;
             }
 
