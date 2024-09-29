@@ -9,9 +9,22 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private int _gameplaySceneIndex;
     [SerializeField] private FadeController _fadeController;
 
+    private bool started;
     private void Start()
     {
         InputMic.OnRecognize += OnRecognize;
+    }
+
+    private void Update()
+    {
+        if(started)
+            return;
+
+        if(Input.GetKeyDown(KeyCode.Return))
+        {
+            OnStartGame();
+            started = true;
+        }
     }
 
     private void OnRecognize(string value)
