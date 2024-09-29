@@ -219,6 +219,23 @@ MonoBehaviour:
   - {fileID: 1612254501469024540}
   _activeFormationColor: {r: 1, g: 0.9362713, b: 0.36320752, a: 1}
   _inactiveFormationColor: {r: 0.65199995, g: 0.65199995, b: 0.65199995, a: 1}
+  _punchData:
+  - Key: left
+    T: {fileID: 3057268926695679301}
+  - Key: right
+    T: {fileID: 3001287258620803244}
+  - Key: free
+    T: {fileID: 5950888167131325116}
+  - Key: point
+    T: {fileID: 5375256008279612795}
+  - Key: line
+    T: {fileID: 687892027546883036}
+  - Key: column
+    T: {fileID: 9030680151262142715}
+  - Key: wedge
+    T: {fileID: 7897609111334154263}
+  - Key: circle
+    T: {fileID: 6867137617831477150}
 --- !u!1 &4222468214525717268
 GameObject:
   m_ObjectHideFlags: 0
