@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform _lemursParent;
     [SerializeField] private MoveData[] _moveData;
     [SerializeField] private Transform _target;
+    [SerializeField] private AudioSource _audioSource;
     [SerializeField] private PanelsController _panelsController;
     [SerializeField] private FadeController _fadeController;
     [SerializeField] private FormationData[] _formationData;
@@ -101,6 +102,7 @@ public class PlayerController : MonoBehaviour
     {
         if(_lemurs.Count <= 0 && !_isGameOver) {
             StartCoroutine(_panelsController.SetGameOver());
+            _audioSource.Stop();
             _isGameOver = true;
             return;
         }
@@ -155,7 +157,7 @@ public class PlayerController : MonoBehaviour
             if(keyword == _resetKeyword)
             {
                 _fadeController.FadeIn(()=>{ 
-                    UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+                    UnityEngine.SceneManagement.SceneManager.LoadScene(1);
                 });
                 
                 return;
