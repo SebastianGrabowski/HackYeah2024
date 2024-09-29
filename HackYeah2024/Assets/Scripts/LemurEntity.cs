@@ -11,7 +11,6 @@ public class LemurEntity : MonoBehaviour
     [SerializeField] private float _destroyForce;
     public Collider Collider;
     public Collider ColliderTeam;
-    public PlayerController PlayerController;
     public Vector3 Target;
     public bool IsInTeam;
 
@@ -94,7 +93,7 @@ public class LemurEntity : MonoBehaviour
     {
         if(IsInTeam && other.TryGetComponent(out LemurEntity lemurEntity))
         {
-            PlayerController.SetLemursToFree(true, lemurEntity);
+            PlayerController.Instance.SetLemursToFree(true, lemurEntity);
         }
     }
 
@@ -109,7 +108,7 @@ public class LemurEntity : MonoBehaviour
     private IEnumerator SetLemursToFreeNull(LemurEntity lemurEntity)
     {
         yield return new WaitForSeconds(0.5f);
-            PlayerController.SetLemursToFree(false, lemurEntity);
+            PlayerController.Instance.SetLemursToFree(false, lemurEntity);
     }
 
     public void OnObstacleCollision(Vector3 point)
@@ -117,10 +116,7 @@ public class LemurEntity : MonoBehaviour
         if(_collided)
             return;
 
-        if(PlayerController == null)
-            PlayerController = FindObjectOfType<PlayerController>();
-
-        PlayerController.RemoveLemur(this);
+        PlayerController.Instance.RemoveLemur(this);
 
         _animator.enabled = true;
         _animator.SetTrigger("Caught");
@@ -135,7 +131,7 @@ public class LemurEntity : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var dir = (PlayerController.TargetPos + Target) - transform.position;
+        var dir = (PlayerController.Instance.TargetPos + Target) - transform.position;
 
         if (!IsInTeam)
         {

@@ -1714,7 +1714,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _waitIfFirst: 0
-  _lemurChance: 0.65
+  _lemurChance: 0.45
   _minEnemyAmount: 1
   _maxEnemyAmount: 2
   _minLemurAmount: 1
