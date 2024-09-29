@@ -42,7 +42,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _EnableExternalAlpha: 0
-    - _Value: 0.896
+    - _Value: 0
     m_Colors:
     - _ColA: {r: 1, g: 1, b: 1, a: 1}
     - _ColB: {r: 0, g: 0, b: 0, a: 1}

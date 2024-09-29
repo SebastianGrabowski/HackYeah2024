@@ -28,7 +28,10 @@ public class InputMic : MonoBehaviour
     private void Recognizer_OnPhraseRecognized(PhraseRecognizedEventArgs args)
     {
         Debug.Log(args.text);
-        _playerController.Move(args.text);
+
+        if(_playerController)
+            _playerController.Move(args.text);
+            
         OnRecognize?.Invoke(args.text);
     }
 
