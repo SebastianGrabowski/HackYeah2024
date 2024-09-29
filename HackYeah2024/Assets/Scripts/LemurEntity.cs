@@ -23,8 +23,8 @@ public class LemurEntity : MonoBehaviour
 
     private void Awake()
     {
-        _animTime = Random.Range(35.0f, 45.0f);
-        _animMinMax = Random.Range(35.0f, 45.0f);
+        _animTime = Random.Range(5.0f, 7.0f);
+        _animMinMax = Random.Range(25.0f, 35.0f);
         _rigidbody = GetComponent<Rigidbody>();
         RefreshView();
     }
@@ -66,14 +66,14 @@ public class LemurEntity : MonoBehaviour
     private void LeftHandler()
     {
         if(!IsInTeam) return;
-        _teamView.transform.localScale = Vector3.one * 0.7f;
-        _notTeamView.transform.localScale = Vector3.one * 0.7f;
+        _teamView.transform.localScale = Vector3.one * 1.5f;
+        _notTeamView.transform.localScale = Vector3.one * 1.5f;
     }
 
     private void RightHandler()
     {
         if(!IsInTeam) return;
-        var inv = new Vector3(-1.0f, 1.0f, 1.0f) * 0.7f;
+        var inv = new Vector3(-1.0f, 1.0f, 1.0f) * 1.5f;
         _teamView.transform.localScale = inv;
         _notTeamView.transform.localScale = inv;
     }
@@ -155,9 +155,9 @@ public class LemurEntity : MonoBehaviour
 
         _rigidbody.velocity = dir.normalized  * 10.0f * Mathf.Min(1, dir.magnitude);
 
-        _teamView.transform.rotation = Quaternion.Euler(
-            _teamView.transform.rotation.eulerAngles.x, 
-            _teamView.transform.rotation.eulerAngles.y, 
+        _teamView.transform.localRotation = Quaternion.Euler(
+            _teamView.transform.localRotation.eulerAngles.x, 
+            _teamView.transform.localRotation.eulerAngles.y, 
             Mathf.PingPong(Time.unscaledTime*_animTime, _animMinMax)-(_animMinMax/2.0f)// transform.rotation.z
             );
         _teamView.transform.localPosition += Time.deltaTime * 0.8f * (Vector3.up * Mathf.Sin((Time.unscaledTime+transform.position.x) * 15.0f));
