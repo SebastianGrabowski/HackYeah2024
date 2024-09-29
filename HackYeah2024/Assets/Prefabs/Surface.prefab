@@ -333,9 +333,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcf5cf37cf3925344b2ef26248a86fdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxDistance: 12.6
-  _minDistance: 12.2
-  _offsetY: 58.5
+  _maxDistance: 18.9
+  _minDistance: 18.3
+  _offsetY: 87.75
   _player: {fileID: 0}
   _platforms:
   - {fileID: 4768317867552210030}
@@ -523,7 +523,7 @@ PrefabInstance:
     - target: {fileID: 1775588188131945277, guid: bbbf641f3f364234180aa1d6289d6104,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 39
+      value: 68.6
       objectReference: {fileID: 0}
     - target: {fileID: 1775588188131945277, guid: bbbf641f3f364234180aa1d6289d6104,
         type: 3}
@@ -609,12 +609,12 @@ PrefabInstance:
     - target: {fileID: 1775588188131945277, guid: bbbf641f3f364234180aa1d6289d6104,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 19.5
+      value: 34.3
       objectReference: {fileID: 0}
     - target: {fileID: 1775588188131945277, guid: bbbf641f3f364234180aa1d6289d6104,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1775588188131945277, guid: bbbf641f3f364234180aa1d6289d6104,
         type: 3}
@@ -741,6 +741,16 @@ PrefabInstance:
         type: 3}
       propertyPath: _waitIfFirst
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6288846519238209414, guid: bbbf641f3f364234180aa1d6289d6104,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 6288846519238209414, guid: bbbf641f3f364234180aa1d6289d6104,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.166
       objectReference: {fileID: 0}
     - target: {fileID: 6344899458300747979, guid: bbbf641f3f364234180aa1d6289d6104,
         type: 3}
