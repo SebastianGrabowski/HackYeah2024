@@ -92,6 +92,7 @@ public class LemurEntity : MonoBehaviour
         Collider.enabled = false;
         Collider.radius = 0.3f;
         RefreshView();
+        PlayerController.Instance.SetLemursToFree(false, this);
     }
 
     private void OnTriggerEnter(Collider other)

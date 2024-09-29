@@ -63,6 +63,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        Debug.Log("FREE " + _lemursToFree.Count);
+
         if(_lemurs.Count <= 0 && !_isGameOver) {
             StartCoroutine(_panelsController.SetGameOver());
             _isGameOver = true;
