@@ -209,11 +209,16 @@ public class PlayerController : MonoBehaviour
         cpy.AddRange(_lemursToFree);
         for (int i = 0; i < cpy.Count; i++)
         {
-            Debug.Log("LL "+ _lemursToFree.Count);
-            AddLemur(_lemursToFree[i]);
+            StartCoroutine(TakeLemur((i*0.1f) + 0.1f, cpy[i]));
         }
     }
 
+    private IEnumerator TakeLemur(float offset, LemurEntity l)
+    {
+        yield return new WaitForSeconds(offset);
+            AddLemur(l);
+
+    }
     public void AddLemur(LemurEntity lemurEntity)
     {
         if(!_lemurs.Contains(lemurEntity))
