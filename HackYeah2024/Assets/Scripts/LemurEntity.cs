@@ -119,7 +119,11 @@ public class LemurEntity : MonoBehaviour
 
     public void OnObstacleCollision(Vector3 point)
     {
-        if(_isKilled)return;
+        if(!IsInTeam)
+            return;
+
+        if(_collided)
+            return;
 
         if(_collided)
             return;

@@ -16,7 +16,7 @@ public class Platform : MonoBehaviour
     [SerializeField] private int _maxLemurAmount = 3;
     
     [SerializeField] private LemurEntity _lemurEntity;
-    [SerializeField] private Obstacle _obstacle;
+    [SerializeField] private Obstacle[] _obstaclePrefabs;
 
     [SerializeField] public Vector3[] _minSpawnOffsets;
     [SerializeField] public Vector3[] _maxSpawnOffsets;
@@ -63,12 +63,13 @@ public class Platform : MonoBehaviour
                 {
                     var lemur = Instantiate(_lemurEntity, _entityPoints[i].position, Quaternion.identity);
                     lemur.transform.SetParent(_entityPoints[i]);
-                    _lemurEntities.Add(lemur);
                     lemur.transform.localPosition = new Vector3(
                         Random.Range(_minSpawnOffsets[j].x, _maxSpawnOffsets[j].x),
                         Random.Range(_minSpawnOffsets[j].y, _maxSpawnOffsets[j].y),
                         Random.Range(_minSpawnOffsets[j].z, _maxSpawnOffsets[j].z)
                     );
+                    
+                    _lemurEntities.Add(lemur);
                 }
                 
             }
@@ -77,14 +78,17 @@ public class Platform : MonoBehaviour
                 var enemyAmount = Random.Range(_minEnemyAmount, _maxEnemyAmount);
                 for (int j = 0; j < enemyAmount; j++)
                 {
-                    var obstacle = Instantiate(_obstacle, _entityPoints[i].position, Quaternion.identity);
+                    var randomObstacle = Random.Range(0, _obstaclePrefabs.Length);
+                    var obstacleToSpawn = _obstaclePrefabs[randomObstacle];
+                    var obstacle = Instantiate(obstacleToSpawn, _entityPoints[i].position, Quaternion.identity);
                     obstacle.transform.SetParent(_entityPoints[i]);
-                    _obstacles.Add(obstacle);
                     obstacle.transform.localPosition = new Vector3(
                         Random.Range(_minSpawnOffsets[j].x, _maxSpawnOffsets[j].x),
                         Random.Range(_minSpawnOffsets[j].y, _maxSpawnOffsets[j].y),
                         Random.Range(_minSpawnOffsets[j].z, _maxSpawnOffsets[j].z)
                     );
+
+                    _obstacles.Add(obstacle);
                 }
             }
         }
