@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
     public static event Action OnRight;
 
     [SerializeField] private Transform _cam;
+    [SerializeField] private Transform _camS;
     [SerializeField] private string _freeKeyword;
     [SerializeField] private string _resetKeyword;
     [SerializeField] private float _removeTime = 0.75f;
@@ -51,6 +52,35 @@ public class PlayerController : MonoBehaviour
     public Vector3 TargetPos => _target.position;
 
     public static PlayerController Instance { get; private set; }
+
+    public void ShakeCam(int c)
+    {
+        StartCoroutine(ShakeCamUpdate(c));
+    }
+
+    private IEnumerator ShakeCamUpdate(int c)
+    {
+        var t = 0.0f;
+        var force = Mathf.Lerp(0.5f, 0.1f, (Mathf.Max(c, 10))/10.0f);
+        var maxt = UnityEngine.Random.Range(0.05f, 0.2f);
+        while(t < maxt)
+        {
+            t += Time.deltaTime;
+            _camS.localPosition += (t/maxt) * UnityEngine.Random.insideUnitSphere * force;
+            yield return null;
+        }
+        
+        t = 0.0f;
+        maxt = 0.1f;
+        var startS = _camS.transform.localPosition;
+        while(t < maxt)
+        {
+            t += Time.deltaTime;
+            _camS.localPosition = Vector3.Lerp(startS, Vector3.zero, t/maxt);
+            yield return null;
+        }
+        _camS.localPosition = Vector3.zero;
+    }
 
     private void Start()
     {
@@ -195,7 +225,7 @@ public class PlayerController : MonoBehaviour
             _lemurs.Remove(lemurEntity);
             OnTeamChanged?.Invoke();
             RefreshFormation();
-
+            ShakeCam(_lemurs.Count);
             Destroy(lemurEntity.gameObject, _removeTime);
         }
     }
