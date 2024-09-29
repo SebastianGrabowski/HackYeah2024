@@ -9,7 +9,7 @@ public class LemurEntity : MonoBehaviour
     [SerializeField] private GameObject _notTeamView;
     [SerializeField] private Renderer _teamR;
     [SerializeField] private float _destroyForce;
-    public Collider Collider;
+    public SphereCollider Collider;
     public Collider ColliderTeam;
     public Vector3 Target;
     public bool IsInTeam;
@@ -19,6 +19,7 @@ public class LemurEntity : MonoBehaviour
 
     private float _animTime;
     private float _animMinMax;
+    private bool _isKilled;
 
     private void Awake()
     {
@@ -50,10 +51,13 @@ public class LemurEntity : MonoBehaviour
         var t = 0.0f;
         var maxt = 0.4f;
         var startPos = transform.position;
+        Collider.enabled = false;
+        ColliderTeam.enabled = false;
         while(t < maxt)
         {
             t += Time.unscaledDeltaTime;
             _teamR.material.color = Color.Lerp(Color.white, Color.black, t/maxt);
+            _rigidbody.velocity = Vector3.zero;
             transform.position = Vector3.Lerp(startPos, point, t/maxt);
             yield return null;
         }
@@ -86,6 +90,7 @@ public class LemurEntity : MonoBehaviour
         IsInTeam = true;
         ColliderTeam.enabled = true;
         Collider.enabled = false;
+        Collider.radius = 0.3f;
         RefreshView();
     }
 
@@ -113,17 +118,23 @@ public class LemurEntity : MonoBehaviour
 
     public void OnObstacleCollision(Vector3 point)
     {
+        if(_isKilled)return;
+
         if(_collided)
             return;
 
-        PlayerController.Instance.RemoveLemur(this);
+        _isKilled = true;
 
+        PlayerController.Instance.RemoveLemur(this);
+        
+        transform.parent = null;
         _animator.enabled = true;
         _animator.SetTrigger("Caught");
         Kill(point);
 
-        _rigidbody.constraints = RigidbodyConstraints.None;
-        _rigidbody.AddForce(Vector3.up * _destroyForce);
+        _rigidbody.velocity = Vector3.zero;
+        //_rigidbody.constraints = RigidbodyConstraints.None;
+        //_rigidbody.AddForce(Vector3.up * _destroyForce);
         _collided = true;
         
     }
@@ -131,11 +142,13 @@ public class LemurEntity : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(_isKilled) return;
         var dir = (PlayerController.Instance.TargetPos + Target) - transform.position;
 
         if (!IsInTeam)
         {
-            _rigidbody.velocity = dir.normalized  * 0.2f * Mathf.Min(1, dir.magnitude);
+            if(PlayerController.Instance.TeamCount > 0)
+                _rigidbody.velocity = dir.normalized  * 0.2f * Mathf.Min(1, dir.magnitude);
             return;
         }
 
