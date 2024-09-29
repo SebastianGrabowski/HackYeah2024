@@ -8,6 +8,7 @@ public class Platform : MonoBehaviour
     [SerializeField] private bool _waitIfFirst;
     [SerializeField] private float _lemurChance = 0.65f;
 
+    [SerializeField] private int _minEntityPoints = 3;
     [SerializeField] private int _minEnemyAmount = 1;
     [SerializeField] private int _maxEnemyAmount = 2;
 
@@ -51,7 +52,7 @@ public class Platform : MonoBehaviour
         _lemurEntities.Clear();
         _obstacles.Clear();
 
-        var entityAmount = Random.Range(2, _entityPoints.Length);
+        var entityAmount = Random.Range(_minEntityPoints, _entityPoints.Length);
         for (int i = 0; i < entityAmount; i++)
         {
             float randomChance = Random.value;
