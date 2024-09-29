@@ -8,6 +8,7 @@ namespace Game.UI
 
     public class PanelsController : MonoBehaviour
     {
+        [SerializeField]private TopBarView _topBarView;
         [SerializeField]private RightBarView _rightBarView;
         [SerializeField]private LeftBarView _leftBarView;
         [SerializeField]private CenterBarView _centerBarView;
@@ -20,6 +21,8 @@ namespace Game.UI
         {
             while(PlayerController.Instance == null)
                 yield return null;
+
+            _topBarView.Show();
             _rightBarView.Show();
             _leftBarView.Show();
             _centerBarView.Show();
@@ -28,7 +31,8 @@ namespace Game.UI
         public IEnumerator SetGameOver()
         {
             yield return new WaitForSeconds(_gameOverDelay);
-
+            
+            _topBarView.stop = true;
             _gameOverView.Show();
         }
 
