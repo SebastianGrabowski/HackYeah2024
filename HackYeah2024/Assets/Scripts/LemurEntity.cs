@@ -9,6 +9,7 @@ public class LemurEntity : MonoBehaviour
     [SerializeField] private GameObject _notTeamView;
     [SerializeField] private float _destroyForce;
     public Collider Collider;
+    public Collider ColliderTeam;
     public PlayerController PlayerController;
     public Vector3 Target;
     public bool IsInTeam;
@@ -22,6 +23,34 @@ public class LemurEntity : MonoBehaviour
         RefreshView();
     }
 
+    private void OnEnable()
+    {
+        PlayerController.OnRight += RightHandler;
+        PlayerController.OnLeft += LeftHandler;
+    }
+
+    private void OnDisable()
+    {
+        PlayerController.OnRight -= RightHandler;
+        PlayerController.OnLeft -= LeftHandler;
+    }
+
+    private void LeftHandler()
+    {
+        if(!IsInTeam) return;
+        _teamView.transform.localScale = Vector3.one * 0.7f;
+        _notTeamView.transform.localScale = Vector3.one * 0.7f;
+    }
+
+    private void RightHandler()
+    {
+        if(!IsInTeam) return;
+        var inv = new Vector3(-1.0f, 1.0f, 1.0f) * 0.7f;
+        _teamView.transform.localScale = inv;
+        _notTeamView.transform.localScale = inv;
+    }
+
+
     public void RefreshView()
     {
         _teamView.SetActive(IsInTeam);
@@ -31,7 +60,8 @@ public class LemurEntity : MonoBehaviour
     public void SetInTeam()
     {
         IsInTeam = true;
-        Collider.isTrigger = false;
+        ColliderTeam.enabled = true;
+        Collider.enabled = false;
         RefreshView();
     }
 

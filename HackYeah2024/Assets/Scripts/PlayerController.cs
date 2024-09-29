@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour
 {
     public event Action OnTeamChanged;
     public event Action OnFormationChanged;
+    public static event Action OnLeft;
+    public static event Action OnRight;
 
     [SerializeField] private Transform _cam;
     [SerializeField] private string _freeKeyword;
@@ -92,6 +94,8 @@ public class PlayerController : MonoBehaviour
 
     public void Move(string keyword)
     {
+        if(keyword == "left") OnLeft?.Invoke();
+        if(keyword == "right") OnRight?.Invoke();
 
         var moveData = GetMoveData(keyword, out bool notFound);
         if (notFound)
