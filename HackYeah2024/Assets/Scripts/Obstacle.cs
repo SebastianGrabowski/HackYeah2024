@@ -14,10 +14,14 @@ public class Obstacle : MonoBehaviour
         {
         Debug.Log("Obs B    ");
             lemurEntity.OnObstacleCollision(Point.position);
-        }else if(other.transform.parent.TryGetComponent(out LemurEntity lemurEntity2))
+        }else if(other.transform.parent != null && other.transform.parent.TryGetComponent(out LemurEntity lemurEntity2))
         {
             
             lemurEntity2.OnObstacleCollision(Point.position);
+        }else if(other.transform.parent.parent != null && other.transform.parent.parent.TryGetComponent(out LemurEntity lemurEntity3))
+        {
+            
+            lemurEntity3.OnObstacleCollision(Point.position);
         }
     }
 }

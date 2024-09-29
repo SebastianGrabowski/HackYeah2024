@@ -58,9 +58,9 @@ MonoBehaviour:
   _lemursParent: {fileID: 2912929698422447215}
   _moveData:
   - Keyword: left
-    MoveOffset: {x: -3, y: 0, z: 0}
+    MoveOffset: {x: -2, y: 0, z: 0}
   - Keyword: right
-    MoveOffset: {x: 3, y: 0, z: 0}
+    MoveOffset: {x: 2, y: 0, z: 0}
   _target: {fileID: 1337387733109127572}
   _panelsController: {fileID: 0}
   _fadeController: {fileID: 0}
@@ -71,6 +71,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8898539bdaff29a4d975d5b3dd1ab8d9, type: 2}
   - {fileID: 11400000, guid: ca617dea23f6844409778e51aea7e620, type: 2}
   - {fileID: 11400000, guid: ed484ea0f3c8b544a9ac1f96d3aa3905, type: 2}
+  LastFormation: 0
 --- !u!1 &5401292246793904312
 GameObject:
   m_ObjectHideFlags: 0

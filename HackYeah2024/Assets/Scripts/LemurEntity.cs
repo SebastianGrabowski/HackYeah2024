@@ -135,7 +135,7 @@ public class LemurEntity : MonoBehaviour
 
         if (!IsInTeam)
         {
-            _rigidbody.velocity = dir.normalized  * 0.1f * Mathf.Min(1, dir.magnitude);
+            _rigidbody.velocity = dir.normalized  * 0.2f * Mathf.Min(1, dir.magnitude);
             return;
         }
 
