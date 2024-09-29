@@ -25,6 +25,11 @@ namespace Game.UI
             InputMic.OnRecognize -= DisplayCommand;
         }
 
+        private void OnDestroy()
+        {
+            InputMic.OnRecognize -= DisplayCommand;
+        }
+
         public void DisplayCommand(string value)
         {
             StopAllCoroutines();
