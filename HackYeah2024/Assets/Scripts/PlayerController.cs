@@ -22,6 +22,7 @@ public struct MoveData
 public class PlayerController : MonoBehaviour
 {
     public event Action OnTeamChanged;
+    public event Action OnFormationChanged;
 
     [SerializeField] private Transform _cam;
     [SerializeField] private string _freeKeyword;
@@ -38,7 +39,7 @@ public class PlayerController : MonoBehaviour
 
     private List<LemurEntity> _lemurs = new List<LemurEntity>();
     private List<LemurEntity> _lemursToFree = new List<LemurEntity>();
-    private int _lastFormation;
+    public int LastFormation;
     private bool _isGameOver;
 
     public int TeamCount => _lemurs.Count;
@@ -184,14 +185,15 @@ public class PlayerController : MonoBehaviour
 
     public void SetFormation(int formationID)
     {
-        _lastFormation = formationID;
+        LastFormation = formationID;
         RefreshFormation();
+        OnFormationChanged?.Invoke();
     }
 
     private void RefreshFormation()
     {
         Debug.Log("RefreshFormation");
-        var data = _formationData[_lastFormation];
+        var data = _formationData[LastFormation];
         var points = new List<Vector3>();
 
         for(var i = 0; i < 100; i++)
